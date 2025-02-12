@@ -15,8 +15,8 @@ This is a Node.js and Express-based service that identifies users based on their
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/codder077/microservice.git
-   cd microservice
+   git clone https://github.com/codder077/microservice_identify-.git
+   cd microservice_identify-
    ```
 
 2. Install dependencies:
@@ -27,17 +27,17 @@ This is a Node.js and Express-based service that identifies users based on their
 3. Set up environment variables:
    Create a `.env` file in the root directory and configure the following:
    ```env
-   MYSQL_HOST=your_mysql_host
-   MYSQL_USER=your_mysql_user
-   MYSQL_PASS=your_mysql_password
-   MYSQL_DATABASE=your_database_name
-   MYSQL_PORT=3306
-   PORT=3000
+   DB_USER=postgres
+   DB_PASSWORD=""
+   DB_HOST=""
+   DB_PORT=5432
+   DB_NAME=""
+   EXTERNAL_DATABASE_URL=""
    ```
 
 4. Start the server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 
@@ -59,7 +59,7 @@ This is a Node.js and Express-based service that identifies users based on their
 ### Identify User
 **Endpoint:**
 ```
-POST /api/v1/identify
+POST /identify
 ```
 **Request Body:**
 ```json
@@ -99,7 +99,7 @@ POST /api/v1/identify
 
 You can test the API using tools like [Postman](https://www.postman.com/) or `curl`:
 ```bash
-curl -X POST http://localhost:3000/api/v1/identify \
+curl -X POST https://microservice-identify.onrender.com/identify \
      -H "Content-Type: application/json" \
      -d '{"email": "lorraine@hillvalley.edu", "phoneNumber": "123456"}'
 ```
