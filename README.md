@@ -40,21 +40,19 @@ This is a Node.js and Express-based service that identifies users based on their
    npm start
    ```
 
-## Database Schema
-The `contacts` table is structured as follows:
 
-```sql
-CREATE TABLE IF NOT EXISTS contacts (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  phoneNumber VARCHAR(20) NULL,
-  email VARCHAR(255) NULL,
-  linkedId INT NULL,
-  linkPrecedence ENUM('primary', 'secondary') NOT NULL,
-  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  deletedAt TIMESTAMP NULL
-);
-```
+## Database Schema
+**Table: `contacts`**
+| Column         | Type          | Description                          |
+|---------------|--------------|--------------------------------------|
+| id            | SERIAL PRIMARY KEY | Unique identifier                   |
+| phoneNumber   | VARCHAR(15)   | Contact's phone number               |
+| email         | VARCHAR(255)  | Contact's email address              |
+| linkedId      | INT           | ID of the primary contact (if any)   |
+| linkPrecedence| ENUM('primary', 'secondary') | Defines primary/secondary contact |
+| createdAt     | TIMESTAMP     | Creation timestamp                    |
+| updatedAt     | TIMESTAMP     | Last update timestamp                |
+| deletedAt     | TIMESTAMP     | Soft delete timestamp (nullable)     |
 
 ## API Endpoints
 
@@ -66,7 +64,7 @@ POST /api/v1/identify
 **Request Body:**
 ```json
 {
-	"email": "lorraine@hillvalley.edu",
+	"email": "mcfly@hillvalley.edu",
 	"phoneNumber":"123456"
 }
 ```
@@ -84,10 +82,7 @@ POST /api/v1/identify
       "123456"
     ],
     "secondaryContactIds": [
-      23,
-      28,
-      29,
-      31
+      23
     ]
   }
 }
